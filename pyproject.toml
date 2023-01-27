@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pytadarida"
+version = "0.1.0"
+description = ""
+authors = ["mbsantiago <santiago.mbal@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+Sphinx = "^3.5.4"
+sphinx-autoapi = "^1.8.0"
+coverage = "^5.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
