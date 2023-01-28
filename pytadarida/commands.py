@@ -6,13 +6,13 @@ on the given files.
 """
 import os
 import subprocess
-from typing import Iterable, Literal
+from typing import Iterable, List, Literal, Tuple, Union
 
 import pandas as pd
 
 from pytadarida.configs import TADARIDA_BINARY
 from pytadarida.logs import RunStatus, get_run_status
-from pytadarida.output import get_output_files, clean_output_files
+from pytadarida.output import clean_output_files, get_output_files
 from pytadarida.parsing import parse_detections
 from pytadarida.validate_inputs import validate_files
 
@@ -21,7 +21,7 @@ __all__ = [
 ]
 
 
-PathLike = str | os.PathLike
+PathLike = Union[str, os.PathLike]
 
 
 def _run_command(*args: str, capture_output: bool = False):
@@ -54,12 +54,14 @@ def _build_args(
 
 
 def run_tadarida(
-    files: PathLike | list[PathLike] | tuple[PathLike] | Iterable[PathLike],
+    files: Union[
+        PathLike, List[PathLike], Tuple[PathLike, ...], Iterable[PathLike]
+    ],
     threads: int = 1,
     time_expansion: Literal[10, 1] = 1,
     features=2,
     frequency_band: Literal[1, 2] = 1,
-) -> tuple[pd.DataFrame, RunStatus]:
+) -> Tuple[pd.DataFrame, RunStatus]:
     """Run the tadarida binary on the given files.
 
     Will run the tadarida binary on the given files, and return a dataframe

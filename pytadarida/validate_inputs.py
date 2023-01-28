@@ -4,9 +4,9 @@ This module contains functions to validate the input files.
 """
 import os
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, List, Tuple, Union
 
-PathLike = str | os.PathLike
+PathLike = Union[str, os.PathLike]
 
 
 __all__ = [
@@ -46,7 +46,9 @@ def _validate_single_path(path: PathLike) -> None:
         raise ValueError(f"File {path} is not a .wav file.")
 
 
-def validate_files(files: list[PathLike] | tuple[PathLike] | Iterable[PathLike]):
+def validate_files(
+    files: Union[List[PathLike], Tuple[PathLike], Iterable[PathLike]],
+):
     """Check that the given files are valid.
 
     If files is a directory, it must exist and contain .wav files.

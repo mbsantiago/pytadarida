@@ -12,7 +12,8 @@ PyTadarida is distributed under the GNU Lesser General Public License v3.0.
 Functions
 ---------
 run_tadarida
-    Run Tadarida-D on a list of .wav files or a directory containing .wav files.
+    Run Tadarida-D on a list of .wav files or a directory containing .wav
+    files.
 
 Classes
 -------

@@ -1,9 +1,11 @@
 """Parsing functions for .ta files."""
 import os
+from typing import Dict, Union
+from pathlib import Path
 
 import pandas as pd
 
-PathLike = str | os.PathLike
+PathLike = Union[str, os.PathLike]
 
 
 __all__ = [
@@ -29,10 +31,16 @@ def parse_ta_file(path: PathLike) -> pd.DataFrame:
     FileNotFoundError
 
     """
-    return pd.read_csv(path, sep="\t", header=0)
+    dataframe = pd.read_csv(str(path), sep="\t")
+
+    # Check that the output is a dataframe
+    if not isinstance(dataframe, pd.DataFrame):
+        raise TypeError("The output is not a pandas dataframe.")
+
+    return dataframe
 
 
-def parse_detections(mapping: dict[PathLike, PathLike]) -> pd.DataFrame:
+def parse_detections(mapping: Dict[Path, Path]) -> pd.DataFrame:
     """Parse all .ta files in the given file mapping.
 
     The mapping is a dictionary of .wav files and their corresponding .ta

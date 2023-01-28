@@ -10,9 +10,9 @@ files.
 import os
 import shutil
 from pathlib import Path
-from typing import Iterable
+from typing import Dict, Iterable, List, Tuple, Union
 
-PathLike = str | os.PathLike
+PathLike = Union[str, os.PathLike]
 
 
 __all__ = [
@@ -21,7 +21,7 @@ __all__ = [
 ]
 
 
-def get_wav_files(path: PathLike) -> list[Path]:
+def get_wav_files(path: PathLike) -> List[Path]:
     """Get a list of all .wav files in the given directory.
 
     Parameters
@@ -43,9 +43,8 @@ def get_wav_files(path: PathLike) -> list[Path]:
 
 def get_output_files_from_path(
     path: PathLike,
-) -> dict[PathLike, PathLike]:
-    """Get a dictionary of all .wav files in the given directory and their
-    corresponding .ta files.
+) -> Dict[Path, Path]:
+    """Get a dictionary of .wav files to their corresponding .ta files.
 
     If path is a directory, it returns a dictionary of all .wav files in the
     directory and their corresponding .ta files.
@@ -88,10 +87,9 @@ def get_output_files_from_path(
 
 
 def get_output_files(
-    files: tuple[PathLike] | list[PathLike] | Iterable[PathLike],
-) -> dict[PathLike, PathLike]:
-    """Get a dictionary of all .wav files in the given list and their
-    corresponding .ta files.
+    files: Union[Tuple[PathLike, ...], List[PathLike], Iterable[PathLike]],
+) -> Dict[Path, Path]:
+    """Get dictionary of .wav files in the given list and their .ta files.
 
     Parameters
     ----------
