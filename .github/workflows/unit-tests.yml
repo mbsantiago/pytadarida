@@ -24,6 +24,9 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Install shared libraries
+      run: |
+        sudo apt-get install libfftw3-dev libicu-dev libsndfile1-dev libqt5core5a
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
