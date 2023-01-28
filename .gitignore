@@ -76,6 +76,7 @@ coverage.xml
 .pytest_cache/
 cover/
 .pdm.toml
+__pypackages__/
 
 # Logs of TadaridaD
 log/
