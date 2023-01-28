@@ -1,7 +1,8 @@
 # PyTadarida
 
-[![Python package](https://github.com/mbsantiago/pytadarida/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/mbsantiago/pytadarida/actions/workflows/unit-tests.yml)
+[![Tests](https://github.com/mbsantiago/pytadarida/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/mbsantiago/pytadarida/actions/workflows/unit-tests.yml)
 [![Pylint](https://github.com/mbsantiago/pytadarida/actions/workflows/pylint.yml/badge.svg)](https://github.com/mbsantiago/pytadarida/actions/workflows/pylint.yml)
+[![PyPI](https://github.com/mbsantiago/pytadarida/actions/workflows/python-publish.yml/badge.svg)](https://github.com/mbsantiago/pytadarida/actions/workflows/python-publish.yml)
 
 PyTadarida is a Python wrapper for the Tadarida-D algorithm, which is a method
 for detecting presence of bioacoustic events in audio recordings. The algorithm
