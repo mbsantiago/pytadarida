@@ -13,15 +13,11 @@ This module tests the functions that:
 4. writes the python objects to a .csv file.
 5. clean up the output files.
 """
-
-import os
 from pathlib import Path
 
 import pytest
 
 from pytadarida import output
-
-PathLike = str | os.PathLike
 
 
 def test_get_output_files(tmp_path: Path) -> None:
@@ -42,7 +38,9 @@ def test_get_output_files(tmp_path: Path) -> None:
     }
 
     for file in output_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
+
         file.touch()
 
     # Test
@@ -84,7 +82,8 @@ def test_get_output_files_on_directory(tmp_path: Path) -> None:
     }
 
     for file in output_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
         file.touch()
 
     # Test
@@ -101,8 +100,8 @@ def test_get_output_files_on_mixed_inputs(tmp_path: Path) -> None:
     ]
 
     for file in input_files:
-        if file.parent != tmp_path:
-            file.parent.mkdir(exist_ok=True)
+        if file.parent != tmp_path and not file.parent.exists():
+            file.parent.mkdir()
         file.touch()
 
     # Create output files
@@ -111,7 +110,8 @@ def test_get_output_files_on_mixed_inputs(tmp_path: Path) -> None:
     }
 
     for file in output_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
         file.touch()
 
     # Test
@@ -139,7 +139,8 @@ def test_clean_output_files(tmp_path: Path) -> None:
     }
 
     for file in output_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
         file.touch()
 
     # Test
@@ -166,7 +167,8 @@ def test_clean_output_files_does_not_delete_wav_files(tmp_path: Path) -> None:
     }
 
     for file in output_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
         file.touch()
 
     # Test
@@ -195,7 +197,8 @@ def test_clean_output_files_does_not_delete_non_ta_files(
     }
 
     for file in output_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
         file.touch()
 
     # Create non-ta files
@@ -204,7 +207,9 @@ def test_clean_output_files_does_not_delete_non_ta_files(
     }
 
     for file in non_ta_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
+
         file.touch()
 
     # Test
@@ -231,7 +236,9 @@ def test_clean_output_deletes_txt_dir_when_empty(tmp_path: Path) -> None:
     }
 
     for file in output_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
+
         file.touch()
 
     # Test
@@ -260,7 +267,9 @@ def test_clean_output_does_not_delete_txt_dir_if_not_empty(
     }
 
     for file in output_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
+
         file.touch()
 
     # Create non-ta files
@@ -269,7 +278,8 @@ def test_clean_output_does_not_delete_txt_dir_if_not_empty(
     }
 
     for file in non_ta_files.values():
-        file.parent.mkdir(exist_ok=True)
+        if not file.parent.exists():
+            file.parent.mkdir()
         file.touch()
 
     # Test

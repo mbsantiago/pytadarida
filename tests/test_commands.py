@@ -42,6 +42,7 @@ def test_run_tadarida_return_type():
     assert isinstance(detections, pd.DataFrame)
     assert isinstance(status, RunStatus)
 
+
 def test_run_tadarida_works_on_dir_of_wavs():
     """Test run_tadarida works on a dir of wav files."""
     assert TEST_DIR_WAVS.exists()
@@ -53,6 +54,7 @@ def test_no_log_files_after_run_tadarida():
     assert TEST_WAV.exists()
     run_tadarida(TEST_WAV)
     assert not any(Path("log").glob("*.log"))
+
 
 def test_output_files_are_cleared_after_run_tadarida():
     """Test that output files are cleared after running tadarida."""
