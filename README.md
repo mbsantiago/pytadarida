@@ -16,6 +16,10 @@ on its [GitHub repository](https://github.com/YvesBas/Tadarida-D).
 
 ## Installation
 
+PyTadarida only runs in Linux. Make sure you have all the Tadarida-D dependencies:
+
+    sudo apt-get install libfftw3-dev libicu-dev libsndfile1-dev libqt5core5a
+
 PyTadarida is available on PyPI, and can be installed with pip:
 
     pip install pytadarida
