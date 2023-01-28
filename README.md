@@ -17,7 +17,8 @@ on its [GitHub repository](https://github.com/YvesBas/Tadarida-D).
 
 ## Installation
 
-PyTadarida only runs in Linux. Make sure you have all the Tadarida-D dependencies:
+PyTadarida only runs in Linux. Make sure you have all the Tadarida-D
+dependencies, in Ubuntu you can install them with
 
     sudo apt-get install libfftw3-dev libicu-dev libsndfile1-dev libqt5core5a
 
@@ -31,17 +32,28 @@ PyTadarida exposes a single function, `run_tadarida`, which takes a list of .wav
 files or directories containing .wav files as input, and returns a pandas
 DataFrame containing the detected events.
 
+```python
     from pytadarida import run_tadarida
 
     events, status = run_tadarida(["/path/to/file.wav", "/path/to/directory"])
+```
 
-The `status` variable is a object containing the status of the algorithm after
-running. It can be used to check whether the algorithm was able to process the
-file, and any warnings that were generated.
+The `status` variable is an object containing the status of the algorithm after
+running. It can generally ignored, but can be useful to check whether the
+algorithm was able to process the file, and any warnings that were generated.
 
+```python
+    # The stdout attribute contains what the algorithm prints to the
+    # console while running
     tadarida_run_message = status.stdout
+
+    # The errors attribute contains any errors that were generated while
+    # running the algorithm
     tadarida_error_message = status.errors
+
+    # The detect attribute contains the detection log of the algorithm
     tadarida_detection_message = status.detect
+```
 
 ## License
 
