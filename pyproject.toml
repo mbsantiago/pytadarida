@@ -36,8 +36,8 @@ authors = [
 dependencies = [
     "pandas>=1.5.3",
 ]
-requires-python = ">=3.8"
-readme = "README.rst"
+requires-python = ">=3.7"
+readme = "README.md"
 license = {text = "MIT"}
 
 [build-system]
