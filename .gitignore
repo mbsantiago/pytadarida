@@ -3,8 +3,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
-*.so
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
