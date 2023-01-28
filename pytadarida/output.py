@@ -1,113 +1,24 @@
 """
-Parser module.
+This module contains functions to get the output files of Tadarida-D.
 
-This module contains functions that parse the outputs of the
-tadarida program into workable python objects.
+Tadarida-D creates a subdirectory named "txt" in the directory of each
+processed audio file. The subdirectory contains a .ta file with the same
+name as the audio files. This module provides functions to get the
+corresponding .ta files from a given audio file or a directory of audio
+files.
 """
-import csv
 import os
 import shutil
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
 PathLike = str | os.PathLike
 
 
-@dataclass
-class DetectedSoundEvent:
-    """DetectedSoundEvent object.
-
-    Attributes
-    ----------
-    filename : str
-
-    call_number : int
-
-    version : int
-
-    file_duration : float
-
-    samplerate : int
-
-    start_time : float
-
-    duration : float
-
-    previous_start : float
-
-    min_freq : float
-
-    max_freq : float
-
-    band_width : float
-
-    master_point_freq : float
-
-    master_point_position : float
-
-    maximum_energy_frequency : float
-
-    """
-    filename: str
-    call_number: int
-    version: int
-    file_duration: float
-    samplerate: int
-    start_time: float
-    duration: float
-    previous_start: float
-    min_freq: float
-    max_freq: float
-    band_width: float
-    master_point_freq: float
-    master_point_position: float
-    maximum_energy_frequency: float
-
-
-def parse_ta_file(path: PathLike) -> list[DetectedSoundEvent]:
-    """Parse a .ta file into a list of DetectedSoundEvent objects.
-
-    Parameters
-    ----------
-    path : str or os.PathLike
-
-    Returns
-    -------
-    list of DetectedSoundEvent
-
-    Raises
-    ------
-    FileNotFoundError
-
-    """
-    path = Path(path)
-
-    if not path.exists():
-        raise FileNotFoundError(f"File {path} does not exist.")
-
-    with open(path, "r", encoding="utf-8") as csvfile:
-        reader = csv.reader(csvfile, delimiter="\t")
-        next(reader)  # skip header
-        return [
-            DetectedSoundEvent(
-                filename=row[0],
-                call_number=int(row[1]),
-                version=int(row[2]),
-                file_duration=float(row[3]),
-                samplerate=int(row[4]),
-                start_time=float(row[5]),
-                duration=float(row[6]),
-                previous_start=float(row[7]),
-                min_freq=float(row[8]),
-                max_freq=float(row[9]),
-                band_width=float(row[10]),
-                master_point_freq=float(row[11]),
-                master_point_position=float(row[12]),
-                maximum_energy_frequency=float(row[13]),
-            )
-            for row in reader
-        ]
+__all__ = [
+    "get_output_files",
+    "clean_output_files",
+]
 
 
 def get_wav_files(path: PathLike) -> list[Path]:
@@ -201,7 +112,7 @@ def get_output_files(
     return output_files
 
 
-def clean_output(files: Iterable[PathLike]):
+def clean_output_files(files: Iterable[PathLike]):
     """Clean the output files.
 
     Tadarida-D creates a subdirectory named "txt" in the directory of each

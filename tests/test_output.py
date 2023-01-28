@@ -16,7 +16,6 @@ This module tests the functions that:
 
 import os
 from pathlib import Path
-from typing import Iterable, List
 
 import pytest
 
@@ -144,7 +143,7 @@ def test_clean_output_files(tmp_path: Path) -> None:
         file.touch()
 
     # Test
-    output.clean_output(input_files)
+    output.clean_output_files(input_files)
     for file in output_files.values():
         assert not file.exists()
 
@@ -171,7 +170,7 @@ def test_clean_output_files_does_not_delete_wav_files(tmp_path: Path) -> None:
         file.touch()
 
     # Test
-    output.clean_output(input_files)
+    output.clean_output_files(input_files)
     for file in input_files:
         assert file.exists()
 
@@ -209,7 +208,7 @@ def test_clean_output_files_does_not_delete_non_ta_files(
         file.touch()
 
     # Test
-    output.clean_output(input_files)
+    output.clean_output_files(input_files)
     for file in non_ta_files.values():
         assert file.exists()
 
@@ -236,7 +235,7 @@ def test_clean_output_deletes_txt_dir_when_empty(tmp_path: Path) -> None:
         file.touch()
 
     # Test
-    output.clean_output(input_files)
+    output.clean_output_files(input_files)
     for file in output_files.values():
         assert not file.parent.exists()
 
@@ -274,7 +273,7 @@ def test_clean_output_does_not_delete_txt_dir_if_not_empty(
         file.touch()
 
     # Test
-    output.clean_output(input_files)
+    output.clean_output_files(input_files)
     for file in non_ta_files.values():
         assert file.parent.exists()
 
