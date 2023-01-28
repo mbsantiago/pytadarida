@@ -33,7 +33,9 @@ description = "Python wrapper to Tadarida-D software"
 authors = [
     {name = "Santiago Martinez", email = "santiago.mbal@gmail.com"},
 ]
-dependencies = []
+dependencies = [
+    "pandas>=1.5.3",
+]
 requires-python = ">=3.8"
 readme = "README.rst"
 license = {text = "MIT"}
