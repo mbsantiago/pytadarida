@@ -29,7 +29,7 @@ lint:
 	pdm run pylint --exclude=.tox
 
 test:
-	pytest --verbose --color=yes $(TEST_DIR)
+	pdm run pytest --verbose --color=yes $(TEST_DIR)
 
 clean-docs:
 	rm -rf docs/build/
