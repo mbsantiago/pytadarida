@@ -1,7 +1,7 @@
 """Parsing functions for .ta files."""
 import os
-from typing import Dict, Union
 from pathlib import Path
+from typing import Dict, Union
 
 import pandas as pd
 
